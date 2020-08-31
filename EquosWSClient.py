@@ -24,14 +24,11 @@ class EquosWSClient():
         self.username = _username
         self.password = _password
         self.userId = _userId
-        self.fetchMarkets()
+        self._fetchMarkets()
 
-    def fetchMarkets(self):
-        r = requests.get(self.restURI + '/getInstrumentPairs')
-        markets = r.json().get('instrumentPairs')
-        for pair in markets:
-            self.symbolToPairId[pair[1]] = pair[0]
-
+    """
+    Public functions for obtaining WS data
+    """
     def fetch_ws_orderbook_stream(self, symbol):
         asyncio.get_event_loop().run_until_complete(self._orderbook(symbol))
 
@@ -50,6 +47,16 @@ class EquosWSClient():
 
     def fetch_ws_risk_stream(self, account = None):
         asyncio.get_event_loop().run_until_complete(self._risk(account))
+
+    """
+    Internal functions
+    """
+
+    def _fetchMarkets(self):
+        r = requests.get(self.restURI + '/getInstrumentPairs')
+        markets = r.json().get('instrumentPairs')
+        for pair in markets:
+            self.symbolToPairId[pair[1]] = pair[0]
 
     async def _orderbook(self, symbol):
         pairId = self.symbolToPairId.get(symbol, None)
