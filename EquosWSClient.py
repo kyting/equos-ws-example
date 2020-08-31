@@ -118,7 +118,6 @@ class EquosWSClient():
         payload = json.dumps(params)
         payload = payload.replace(" ", "")
 
-        print(f"payload is: {payload}")
         async with websockets.connect(uri) as websocket:
             await websocket.send(payload)
             while True:
@@ -136,7 +135,6 @@ class EquosWSClient():
         payload = json.dumps(params)
         payload = payload.replace(" ", "")
 
-        print(f"payload is: {payload}")
         async with websockets.connect(uri) as websocket:
             await websocket.send(payload)
             while True:
@@ -154,7 +152,6 @@ class EquosWSClient():
         payload = json.dumps(params)
         payload = payload.replace(" ", "")
 
-        print(f"payload is: {payload}")
         async with websockets.connect(uri) as websocket:
             await websocket.send(payload)
             while True:
