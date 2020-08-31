@@ -63,6 +63,7 @@ class EquosWSClient():
             await websocket.send(json.dumps({'pairId': pairId}))
             while True:
                 res = await websocket.recv()
+                print(res)
                 # Do whatever business logic you want here
 
     async def _trade_history(self, symbol):
@@ -77,6 +78,7 @@ class EquosWSClient():
             await websocket.send(json.dumps({'pairId': pairId}))
             while True:
                 res = await websocket.recv()
+                print(res)
                 # Do whatever business logic you want here
  
     async def _ohlc(self, symbol, timespan):
@@ -96,6 +98,7 @@ class EquosWSClient():
             await websocket.send(json.dumps({'pairId': pairId, 'timespan': timespanInt}))
             while True:
                 res = await websocket.recv()
+                print(res)
                 # Do whatever business logic you want here
  
     async def _orders(self, account = None):
